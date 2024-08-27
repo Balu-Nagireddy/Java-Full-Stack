@@ -1,0 +1,426 @@
+Java 8 Interface Changes – default method and static method:
+============================================================
+
+Interface in java can only have abstract methods. All the methods of interfaces are public & abstract Only.
+
+Java 8 allows the interfaces to have default and static methods. 
+
+The reason we have default methods in interfaces is to allow the developers to add new methods to the interfaces without affecting the classes that implements these interfaces.
+
+default method:
+----------------
+For example, if several classes such as A, B, C and D implements an interface XYZInterface then if we add a new method to the XYZ Interface, we have to change the code in all the classes(A, B, C and D) that implements this interface. 
+
+In this example we have only four classes that implements the interface which we want to change but imagine if there are hundreds of classes implementing an interface then it would be almost impossible to change the code in all those classes. 
+
+This is why in java 8, we have a new concept “default methods”. These methods can be added to any existing interface and we do not need to implement these methods in the implementation classes mandatorily, thus we can add these default methods to existing interfaces without breaking the code.(Backward compatibility ->with out changing the older code)
+
+Static methods:
+---------------
+Static methods interfaces are similar to the default methods except that we cannot override these methods in the classes that implements these interfaces.
+
+
+Lambda expression :
+====================
+A lambda expression in Java has these main parts:
+Lambda expression only has body and parameter list.
+1. No name – function is anonymous so we don’t care about the name
+2. Parameter list
+3. Body – This is the main part of the function.
+4. No return type – The java 8 compiler is able to infer the return type by checking the code. you need not to mention it explicitly.
+
+
+Case1:
+====
+public void methodOne(){
+System.out.println("welcome to lamdba expression");
+
+}
+
+++---->lamda expresssion
+
+()->{System.out.println("welcome to lamda expression");}
+
+Case2:
+======
+
+public void additionOFTwoNumbers(int x,int y){
+  int z = x+y;
+   Sysout(z);
+}
+
++++++>convert above code into lamda expression
+
+(int x,int y) -> {
+                    int z = x+y;
+                    sysout(z);
+                   }
+
+
+or
+
+(x,y) ->{ return x+y;}
+
+
+Case3:
+======
+
+public int additionOFTwoNumbers(int x,int y){
+  int z = x+y;
+   Sysout(z);
+}
+
++++++>convert above code into lamda expression
+
+(int x,int y) -> x+y;
+
+or 
+
+(x,y) -> x+y;
+
+
+
+Where to use the Lambdas in Java:
+=================================
+To use lambda expression, you need to either create your own functional interface or use the pre defined functional interface provided by Java. 
+
+An interface with only single abstract method is called functional interface(or Single Abstract method(SAM) (interface), for example: Comparator,Runnable, callable, ActionListener,Consumer,Comparable etc.
+
+
+
+
+
+
+
+
+Method Reference:
+==================
+Java 8 introduced a new feature “Method Reference” which is used to refer the methods of functional interfaces. It is a shorthand notation of a lambda expression to call a method. 
+
+We can replace lambda expression with method reference (:: operator) to separate the class or object from the method name.
+
+Method Reference(::) Java 8 to implement Functional interfaces with even lesser code again than lambda expressions and this time we get the benefit of code re-usability as well, because we don’t provide an implementation for functional interface. Instead, we provide reference to already existing method (with similar argument types) to simplify the implementation of the functional interface using a double colon (::) operator. This process of providing reference to pre-existing method is called Method reference.
+
+Three Types of method references:
+
+1)MethodReference  to an instance method of Object
+   syntax:  object::instanceMethod
+
+2)Method Reference to an static method of a class
+ syntax : ClassName::staticMethodName
+
+3)Method Reference to a constructor-
+  Syntax: ClassName::new  ---Assignment
+
+
+Method Reference to a constructor-
+  Syntax: ClassName::new
+==============================
+Ex:
+---
+interface Messageable{  
+    Message getMessage(String msg);  
+}  
+class Message{  
+    Message(String msg){  
+        System.out.print(msg);  
+    }  
+}  
+public class ConstructorReference {  
+    public static void main(String[] args) {  
+        Messageable hello = Message::new;  
+        hello.getMessage("Hello");  
+    }  
+}  
+
+
+
+Streams:
+========
+To process objects of the collection, in 1.8 version Streams concept introduced.
+What is the differences between java.util.streams and java.io streams?
+======================================================================
+java.util streams meant for processing objects from the collection. 
+I.e., it represents a stream of objects from the collection 
+but 
+java.io streams meant for processing binary and character data with respect to file.
+i.e., it represents stream of binary data or character data from the file .
+
+hence java.io streams and java.util streams both are different
+
+What is the difference between collection and stream?
+=====================================================
+if we want to represent a group of individual objects as a single entity then 
+we should go for collection.
+if we want to process a group of objects from the collection then we should 
+go for streams.
+
+we can create a stream object to the collection by using stream()method of Collection interface. 
+stream() method is a default method added to the Collection in 1.8 version.
+
+default Stream stream()
+Ex:
+Stream s = c.stream();//factory method//clone()//Class.forName().
+
+
+
+
+
+
+
+Stream is an interface present in java.util.stream.
+==================================================
+once we got the stream, by using that we can process objects of that collection.
+
+we can process the objects in the following two phases
+1.configuration
+2.processing
+
+1.configuration:
+we can configure either by using filter mechanism or by using map mechanism.
+
+Filtering:
+we can configure a filter to filter elements from the collection based on some boolean condition by 
+using filter()method of Stream interface.
+
+public Stream filter(Predicate<T> t)
+
+here (Predicate<T > t ) can be a boolean valued function/lambda expression
+
+Ex:
+Stream s=c.stream();
+Stream s1=s.filter(i -> i%2==0);
+
+Hence to filter elements of collection based on some boolean condition we should go for 
+filter()method
+
+Mapping:
+If we want to create a separate new object, for every object present in the collection based on our 
+requirement then we should go for map () method of Stream interface.
+
+public Stream map (Function f);
+ It can be lambda expression also
+
+Ex:
+Stream s = c.stream();
+Stream s1 = s.map(i-> i+10);
+Once we performed configuration we can process objects by using several methods.
+
+2.Processing:
+============
+processing by collect() method 
+Processing by count()method
+Processing by sorted()method
+Processing by min() and max() methods
+forEach() method
+toArray() method
+Stream.of()method
+
+Ex:
+===
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class TestOnStreamConfiguringAndProcessing {
+
+	public static void main(String[] args) {
+		
+		ArrayList<Integer> l1 = new ArrayList<Integer>(); 
+		l1.add(0); 
+		l1.add(15);
+		l1.add(10); 
+		l1.add(5);
+		l1.add(30);
+		l1.add(25); 
+		l1.add(20); 
+		System.out.println(l1);	
+
+		//map is used to process the each object
+		List<Integer> l2=l1.stream().map(i-> i+10).collect(Collectors.toList()); 
+		System.out.println(l2);
+
+		
+		//counting the even objects from the l1 
+		System.out.println("Even numbers");
+		l1.stream().filter(i->i%2==0).forEach(System.out::println); 
+		
+		
+		Long count=l1.stream().filter(i->i%2==0).count();
+		System.out.println("Even Numbers "+count); 
+		
+		//by defaulting it will display in insertion order we can convert into 
+		//sorted order (ascending order)
+		List<Integer> l3=l1.stream().sorted().collect(Collectors.toList()); 
+		System.out.println("Sorteing Order Ascending:");
+		System.out.println(l3); 
+		
+		//custom sorting
+		Comparator<Integer> comp=(i1,i2)->i2.compareTo(i1); 
+		List<Integer> l4=l1.stream().sorted(comp).collect(Collectors.toList());
+		System.out.println("Custom Sorting Descennding Order:");
+		System.out.println(l4); 
+		
+		//min number from the group of integers
+		Comparator<Integer> comp1=(i1,i2)->i1.compareTo(i2); 
+		Integer min=l1.stream().min(comp1).get(); 
+		System.out.println("min value is :"+min);
+		
+		Integer max=l1.stream().max(comp1).get(); 
+		System.out.println("max value is :"+max);
+		System.out.println("FirstWay");
+		l3.stream().forEach(i->System.out.println(i)); 
+		
+		System.out.println("SecondWay");
+		l3.stream().forEach(System.out::println); 
+
+Ex2:
+----
+Stream class to convert Stream into different Collection classes in Java, like List, Set, Map, and Collection itself.
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class StreamConvertionCodeToCollections {
+
+  public static void main(String[] args) {
+
+    List<String> listOfString = Arrays.asList("Java", "C", "C++", "Go","JavaScript", "Python", "Scala");
+    System.out.println("input list of String: " + listOfString);
+
+    // Example 1 - converting Stream to List using collect() method
+    List<String> listOfStringStartsWithJ
+                              = listOfString.stream()
+                                            .filter(s -> s.startsWith("J"))
+                                            .collect(Collectors.toList());
+
+    System.out.println("list of String starts with letter J: "
+        + listOfStringStartsWithJ);
+
+    // Example 2 - converting Stream to Set
+    Set<String> setOfStringStartsWithC 
+                      = listOfString.stream()
+                                    .filter(s -> s.startsWith("C"))
+                                    .collect(Collectors.toSet());
+
+    System.out.println("set of String starts with letter C: "
+        + setOfStringStartsWithC);
+
+    // Example 3 - converting Stream to Map
+    Map<String, Integer> stringToLength 
+                          = listOfString.stream()
+                                         .collect(Collectors
+                                                .toMap(Function.identity(),
+                                                          String::length));
+    System.out.println("map of string and their length: " + stringToLength);
+
+    // Example - Converting Stream to Collection e.g. ArrayList
+    ArrayList<String> stringWithLengthGreaterThanTwo
+                        = listOfString.stream()
+                                      .filter(s -> s.length() > 2)
+                                      .collect(Collectors.
+                                         toCollection(ArrayList::new));
+    System.out.println("collection of String with length greather than 2: "
+        + stringWithLengthGreaterThanTwo);
+
+  }
+}
+
+
+
+Date and Time API: (Joda-Time API):
+===================================
+In Java 1.8version oracle people introduced Joda-Time API . This API 
+developed by joda.org and available in java in the form of java.time package.
+
+Ex:1 program for to display System Date and time.
+
+ import java.time.*; 
+ public class DateTime { 
+ public static void main(String[] args) { 
+ LocalDate date = LocalDate.now(); 
+ System.out.println(date); 
+ LocalTime time=LocalTime.now(); 
+ System.out.println(time); 
+ } 
+ }
+
+
+Once we get LocalDate object we can call the following methods on that object to retrieve Day,month 
+and year values separately.
+
+import java.time.*; 
+ class Test { 
+ public static void main(String[] args) { 
+ LocalDate date = LocalDate.now(); 
+ System.out.println(date); 
+ int dd = date.getDayOfMonth(); 
+ int mm = date.getMonthValue(); 
+ int yy = date.getYear(); 
+ System.out.println(dd+"..."+mm+"..."+yy); 
+ 
+ } 
+}
+
+Once we get LocalTime object we can call the following methods on that object.
+
+importjava.time.*; 
+class Test { 
+public static void main(String[] args) { 
+LocalTime time = LocalTime.now();
+
+int h = time.getHour(); 
+ int m = time.getMinute(); 
+int s = time.getSecond(); 
+int n = time.getNano(); 
+//System.out.printf("\n%d:%d:%d:%d",h,m,s,n); 
+ } 
+}
+
+
+If we want to represent both Date and Time then we should go for LocalDateTime object.
+
+LocalDateTimedt = LocalDateTime.now();
+System.out.println(dt);
+
+We can represent a particular Date and Time by using LocalDateTime object as follows.
+Ex:
+LocalDateTime dt1=LocalDateTime.of(1995,Month.APRIL,28,12,45);
+sop(dt1);
+
+Ex:
+LocalDateTime dt1=LocalDateTime.of(1995,04,28,12,45);
+		System.out.println(dt1);
+		System.out.println("After six months:"+dt1.plusMonths(6));
+		System.out.println("before six months:"+dt1.minusMonths(6));
+
+
+
+
+Assignment on Java8:
+===================
+1)How to work with null pointer exception using Optional Class.
+2)Search and create three examples on Optional Class
+3)Write a program to store Product(pid,pname,price) class into arrayList and
+using Streams convert Product object into Map<pname,price>
+
+Note:
+====
+Search above programs in www.javaguides.net
+
+
+
+
+
+
+
+
+
+
