@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Jobs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Apply for Jobs</h1>
+        <form name="applyJobForm" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <label>First Name: <input type="text" name="firstName" required></label>
+            <label>Last Name: <input type="text" name="lastName" required></label>
+            <label>Email: <input type="email" name="email" required></label>
+            <label>Phone: <input type="text" name="phone" required></label>
+            <label>Address: <input type="text" name="address" required></label>
+            <label>City: <input type="text" name="city" required></label>
+            <label>State: <input type="text" name="state" required></label>
+            <label>Country:
+                <select name="country" required>
+                    <option value="">Select</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="India">India</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="South Africa">South Africa</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Russia">Russia</option>
+                    <option value="China">China</option>
+                </select>
+            </label>
+            <label>Education Level:
+                <select name="educationLevel" required>
+                    <option value="">Select</option>
+                    <option value="High School">High School</option>
+                    <option value="College">Intermediate</option>
+                    <option value="Bachelor's">Bachelor's</option>
+                    <option value="Master's">Master's</option>
+                </select>
+            </label>
+            <label>Zip Code: <input type="text" name="zip" required></label>
+            <label>Education Type:
+                <select name="educationType" required>
+                    <option value="">Select</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                </select>
+            </label>
+            <label>Resume: <input type="file" name="resume" accept=".pdf,.doc,.docx" required></label>
+            <label>Cover Letter: <textarea name="coverLetter"></textarea></label>
+
+            <label>Are you employed? <input type="checkbox" name="employed" onclick="toggleEmployerFields()"></label>
+            <div id="employerFields" class="hidden">
+                <label>Current Employer: <input type="text" name="currentEmployer"></label>
+                <label>Years of Experience: <input type="number" name="yearsExperience" min="0"></label>
+            </div>
+
+            <label>Select Department:
+                <select name="department" onchange="showJobs(this.value)">
+                    <option value="">Select Department</option>
+                    <option value="IT">IT</option>
+                    <option value="Finance">Finance</option>
+                    <option value="HR">HR</option>
+                </select>
+            </label>
+
+            <div id="jobOptions" class="hidden job-options">
+                <div id="itJobs" class="hidden checkbox-group">
+                    <label><input type="checkbox" name="jobsApplied" value="Software Engineer"> Software Engineer</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Data Analyst"> Data Analyst</label>
+                    <label><input type="checkbox" name="jobsApplied" value="System Administrator"> System Administrator</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Network Engineer"> Network Engineer</label>
+                </div>
+                <div id="financeJobs" class="hidden checkbox-group">
+                    <label><input type="checkbox" name="jobsApplied" value="Financial Analyst"> Financial Analyst</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Accountant"> Accountant</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Investment Banker"> Investment Banker</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Tax Consultant"> Tax Consultant</label>
+                </div>
+                <div id="hrJobs" class="hidden checkbox-group">
+                    <label><input type="checkbox" name="jobsApplied" value="HR Manager"> HR Manager</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Recruiter"> Recruiter</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Training Coordinator"> Training Coordinator</label>
+                    <label><input type="checkbox" name="jobsApplied" value="Compensation Analyst"> Compensation Analyst</label>
+                </div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+<footer>&copy All Rights are Reserved </footer>
+</html>
