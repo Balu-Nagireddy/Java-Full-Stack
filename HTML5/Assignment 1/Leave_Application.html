@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Application Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Internal styles */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leave Application Form</h1>
+        <form action="admin.html" method="post" id="leaveForm">
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="date" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">Applicant Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="authority">Authority:</label>
+                <input type="text" id="authority" name="authority" required>
+            </div>
+            <div class="form-group">
+                <label for="reason">Leave Applying For:</label>
+                <textarea id="reason" name="reason" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="start-date">Leave Start Date:</label>
+                <input type="date" id="start-date" name="start-date" required>
+            </div>
+            <div class="form-group">
+                <label for="end-date">Leave End Date:</label>
+                <input type="date" id="end-date" name="end-date" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">Apply</button>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms" class="checkbox-label">I agree to the terms and conditions</label>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Set current date
+        document.getElementById('date').value = new Date().toISOString().split('T')[0];
+        document.querySelector('button[type="submit"]').classList.add('submit-animation');
+
+        // Form submission handling
+        document.getElementById('leaveForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const searchParams = new URLSearchParams();
+
+            for (const [key, value] of formData.entries()) {
+                searchParams.append(key, value);
+            }
+
+            window.location.href = 'admin.html?' + searchParams.toString();
+        });
+    </script>
+</body>
+</html>
