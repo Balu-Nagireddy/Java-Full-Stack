@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Simple Calculator</title>  
+</head>  
+<body>  
+
+<script>  
+    function calculator() {  
+        let choice = prompt("Menu:\n1. Add\n2. Multiply\n3. Subtract\n4. Divide\n\nEnter your choice:");  
+        
+        let num1, num2, result;  
+
+        switch (choice) {  
+            case '1':  
+                num1 = parseFloat(prompt("Enter first number:"));  
+                num2 = parseFloat(prompt("Enter second number:"));  
+                result = num1 + num2;  
+                alert("The sum is: " + result);  
+                break;  
+            case '2':  
+                num1 = parseFloat(prompt("Enter first number:"));  
+                num2 = parseFloat(prompt("Enter second number:"));  
+                result = num1 * num2;  
+                alert("The product is: " + result);  
+                break;  
+            case '3':  
+                num1 = parseFloat(prompt("Enter first number:"));  
+                num2 = parseFloat(prompt("Enter second number:"));  
+                result = num1 - num2;  
+                alert("The difference is: " + result);  
+                break;  
+            case '4':  
+                num1 = parseFloat(prompt("Enter first number:"));  
+                num2 = parseFloat(prompt("Enter second number:"));  
+                if (num2 === 0) {  
+                    alert("Error: Division by zero is not allowed.");  
+                } else {  
+                    result = num1 / num2;  
+                    alert("The quotient is: " + result);  
+                }  
+                break;  
+            default:  
+                alert("Invalid choice, please try again.");  
+                calculator();
+        }  
+    }  
+    calculator();  
+</script>  
+
+</body>  
+</html>
