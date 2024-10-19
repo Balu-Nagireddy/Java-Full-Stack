@@ -1,0 +1,32 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Simple Interest Calculator</title>  
+    <script>  
+        function calculateSimpleInterest(principal, tenure, rate) {  
+            return (principal * tenure * rate) / 100;  
+        }  
+
+        function calculateAndDisplaySI() {  
+            var principalAmount = 5000;  
+            var tenure = 1;  
+            var rateOfInterest = 2.5;  
+
+            var si = calculateSimpleInterest(principalAmount, tenure, rateOfInterest);  
+
+            document.getElementById("result").innerText = "The simple interest is: Rs. " + si;  
+            document.getElementById("details").innerHTML =   
+                "<strong>Principal Amount:</strong> Rs. " + principalAmount + "<br>" +  
+                "<strong>Tenure:</strong> " + tenure + " year(s)<br>" +  
+                "<strong>Rate of Interest:</strong> " + rateOfInterest + "%";  
+        }  
+    </script>  
+</head>  
+<body onload="calculateAndDisplaySI()">  
+    <h1>Simple Interest Calculator</h1>  
+    <div id="details"></div>  
+    <div id="result"></div>  
+</body>  
+</html>
