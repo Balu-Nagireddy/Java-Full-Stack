@@ -1,0 +1,23 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Swap Values</title>  
+</head>  
+<body>  
+    <h1>Swap Two Values</h1>  
+    <button onclick="swapValues(5, 10)">Swap 5 and 10</button>  
+    <p id="result"></p>  
+
+    <script>  
+        function swapValues(a, b) {  
+            document.getElementById("result").innerText = `Before swap: a = ${a}, b = ${b}`;  
+            a = a + b;  
+            b = a - b;  
+            a = a - b;  
+            document.getElementById("result").innerText += ` | After swap: a = ${a}, b = ${b}`;  
+        }  
+    </script>  
+</body>  
+</html>
