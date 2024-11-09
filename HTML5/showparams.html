@@ -1,0 +1,29 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html>
+<head>
+<title>Show Parameters</title>
+</head>
+<body>
+
+<h2>Parameters</h2>
+
+<p>Username: <span id="username"></span></p>
+<p>Password: <span id="password"></span></p>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get('uname');
+  const password = urlParams.get('psw');
+
+  document.getElementById("username").textContent = username;
+  document.getElementById("password").textContent = password;
+</script>
+
+</body>
+</html>
+dow.location.search);
+        document.getElementById('displayUsername').textContent = params.get('username');
+        document.getElementById('displayPassword').textContent = params.get('password');
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html>
+<head>
+<title>Login Form</title>
+<style>
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<h2>Login Form</h2>
+
+<form id="loginForm">
+  <label for="uname">Username:</label>
+  <input type="text" id="uname" name="uname" required>
+
+  <label for="psw">Password:</label>
+  <input type="password" id="psw" name="psw" required>
+
+  <button type="button" onclick="submitForm()">Login</button>
+</form>
+
+<script>
+  function submitForm() {
+    const username = document.getElementById("uname").value;
+    const password = document.getElementById("psw").value;
+
+    const url = "showparams.html?uname=" + encodeURIComponent(username) + "&psw=" + encodeURIComponent(password);
+    window.location.href = url;
+  }
+</script>
+
+</body>
+</html>
