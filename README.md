@@ -1,7 +1,3 @@
-Here's a **README.md** file tailored for your **Java Full Stack** GitHub repository:  
-
----
-
 # 🚀 **Java Full Stack Development**  
 
 ## 📌 **Project Overview**  
@@ -66,5 +62,3 @@ npm start
 ---
 🔗 **Contributions Welcome!** 🚀 Fork & submit PRs to improve the project.  
 📧 **Have questions?** Open an issue or reach out!  
-
-Let me know if you need any modifications! 🚀
